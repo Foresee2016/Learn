@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./app.css" type="text/css">
+</head>
+<body>
+<div class="box h box-ctr">
+    <!-- 居中显示的整块 -->
+    <div class="container box h main-sb">
+        <!-- 主要内容 -->
+        <div class="box v grow">
+            <div class="card box v">
+                <h2>被设置的内容</h2>
+                <h3 id="text" style="color: #2aa79b">文本</h3>
+                <button onclick="android.notify('I say something.')">notify方法</button>
+                <button onclick="android.show()">回调JS</button>
+            </div>
+            <div class="card box v">
+                <h3 id="javaMethod">调用Android方法</h3>
+                <h3 id="res">返回内容</h3>
+            </div>
+            <div class="card box v">
+                <h3 id="getInfo" style="color: green;">get info</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./jquery.min.js"></script>
+<script type="text/javascript">
+    function setText(text) {
+        $('#text').html(text);
+    }
+    function setRes(res){
+        $('#res').html(res);
+    }
+    $('#javaMethod').on('click', function () {
+        window.android.javaMethod('from jQuery');
+        $('#res').html('正在获取');
+    });
+    function getHello(name) {
+        return 'Hello '+name;
+    }
+    $('#getInfo').on('click', function(){
+        var info=window.android.getInfo();
+        $('#res').html('info = '+ info);
+    });
+</script>
+</body>
+</html>
