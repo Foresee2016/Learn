@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./app.css" type="text/css">
+</head>
+<body>
+<div class="box h box-ctr">
+    <!-- 居中显示的整块 -->
+    <div class="container box h main-sb">
+        <!-- 主要内容 -->
+        <div class="box v grow">
+            <div class="card box v">
+                <h2>被设置的内容</h2>
+                <h3 id="show" style="color: #2aa79b">文本</h3>
+                <button onclick="callJava()">Call Java</button>
+                <button onclick="callDefault()">Call Default</button>
+            </div>
+            <p id="tip">信息</p>
+        </div>
+    </div>
+</div>
+<script src="./jquery.min.js"></script>
+<script type="text/javascript">
+    function callJava(){
+        window.WebViewJavascriptBridge.callHandler(
+            'submitFromWeb'
+            , {'param': '123456'}
+            , function(responseData) {
+                document.getElementById("show").innerHTML = "send get responseData from java, data = " + responseData
+            }
+        );
+    }
+    function callDefault(){
+        window.WebViewJavascriptBridge.send(
+            data
+            , function(responseData) {
+                document.getElementById("show").innerHTML = "repsonseData from java, data = " + responseData
+            }
+        );
+    }
+    function init(){
+        console.log('注册JS方法备Java调用');
+        WebViewJavascriptBridge.registerHandler("functionInJs", function(data, responseCallback) {
+            document.getElementById("show").innerHTML = ("data from Java: = " + data);
+            var responseData = "Javascript Says Right back aka!";
+            responseCallback(responseData);
+        });
+        WebViewJavascriptBridge.init(function(message, responseCallback) {
+            console.log('JS got a message', message);
+            var data = {
+                'Javascript Responds': 'Wee!'
+            };
+            console.log('JS responding with', data);
+            responseCallback(data);
+        });
+    }
+    if (window.WebViewJavascriptBridge) {
+        document.getElementById('tip').innerHTML = 'mounted';
+        init();
+    } else {
+        document.getElementById('tip').innerHTML = 'not mounted';
+        document.addEventListener(
+            'WebViewJavascriptBridgeReady'
+            , function() {
+                init();
+                document.getElementById('tip').innerHTML = 'listen mounted';
+            },
+            false
+        );
+    }
+</script>
+</body>
+</html>

@@ -2,4 +2,6 @@
     <string name="app_name">Learn</string>
     <string name="open_web">打开网页</string>
     <string name="call_js">调用JS</string>
+    <string name="js_bridge">使用JS Bridge</string>
+    <string name="call_default">调用默认</string>
 </resources>

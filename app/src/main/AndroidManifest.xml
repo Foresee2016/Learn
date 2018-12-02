@@ -3,7 +3,6 @@
     package="org.foresee.learn">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WebActivity" />
+        <activity android:name=".JsBridgeActivity" />
     </application>
 
 </manifest>

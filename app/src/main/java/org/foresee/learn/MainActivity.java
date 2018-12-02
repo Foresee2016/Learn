@@ -10,6 +10,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     Button mOpenWeb;
+    Button mJsBridgeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,14 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent=WebActivity.newIntent(MainActivity.this, "10.0.2.2:8088");
 //                Intent intent=WebActivity.newIntent(MainActivity.this, "http://10.0.2.2:8088/");
                 Intent intent=WebActivity.newIntent(MainActivity.this, "file:///android_asset/home.html");
+                startActivity(intent);
+            }
+        });
+        mJsBridgeBtn=findViewById(R.id.js_bridge);
+        mJsBridgeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=JsBridgeActivity.newIntent(MainActivity.this, "file:///android_asset/js_bridge.html");
                 startActivity(intent);
             }
         });

@@ -23,5 +23,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/text"
         app:layout_constraintLeft_toLeftOf="parent"/>
+    <Button
+        android:id="@+id/js_bridge"
+        android:text="@string/js_bridge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/open_web"
+        app:layout_constraintBottom_toTopOf="@id/text"
+        app:layout_constraintLeft_toLeftOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
